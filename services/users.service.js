@@ -6,23 +6,25 @@ const MongooseAdapter = require("moleculer-db-adapter-mongoose");
 const UserModel = require('../models/User');
 const hashPassword = require('../lib/passwordTools').hashPassword;
 const validatePassword = require('../lib/passwordTools').validatePassword;
+const MyUsersMixin = require("../mixins/users.mixin");
 /** @type {ServiceSchema} */
 module.exports = {
   name: "users",
   // version: 1
-  mixins: [DbService],
+  mixins: [DbService, MyUsersMixin],
   adapter: new MongooseAdapter(process.env.MONGODB),
   model: UserModel,
   hooks: {
-    // before: {
-    //   create: [
-    //     function addTimestamp(ctx) {
-    //       // Add timestamp
-    //       ctx.params.createdAt = new Date();
-    //       return ctx;
-    //     }
-    //   ]
-    // },
+    before: {
+      update: [
+        // function addTimestamp(ctx) {
+        //   // Add timestamp
+        //   ctx.params.createdAt = new Date();
+        //   return ctx;
+        // }
+        "transformPlainPasswordToHash"
+      ]
+    },
     after: {
       update: [
         async (ctx, res) => {
@@ -66,7 +68,6 @@ module.exports = {
     // 	username: "string|min:3",
     // 	password: "string|min:3"
     // },
-
   },
   actions: {
     login: {
