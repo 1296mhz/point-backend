@@ -4,17 +4,14 @@ require('dotenv').config();
 const DbService = require("moleculer-db");
 const MongooseAdapter = require("moleculer-db-adapter-mongoose");
 const ReportModel = require('../models/Report');
-
+const MyReportsMixin = require("../mixins/reports.mixin");
 /** @type {ServiceSchema} */
 module.exports = {
   name: "reports",
   // version: 1
-  mixins: [DbService],
+  mixins: [DbService, MyReportsMixin],
   adapter: new MongooseAdapter(process.env.MONGODB),
   model: ReportModel,
-  /**
-   * Settings
-   */
   settings: {
     // Available fields in the responses
     populates: {
@@ -45,6 +42,13 @@ module.exports = {
     // 	password: "string|min:3"
     // },
 
+  },
+  hooks: {
+    before: {
+      create: [
+        "checkTheExistenceOfTheReportForTheCurrentUserAndForTheCurrentDay"
+      ]
+    }
   },
   actions: {
     getReportsCurrentMonths: {

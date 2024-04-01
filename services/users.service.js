@@ -17,13 +17,8 @@ module.exports = {
   hooks: {
     before: {
       update: [
-        // function addTimestamp(ctx) {
-        //   // Add timestamp
-        //   ctx.params.createdAt = new Date();
-        //   return ctx;
-        // }
         "transformPlainPasswordToHash"
-      ]
+      ],
     },
     after: {
       update: [

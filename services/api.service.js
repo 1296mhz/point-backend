@@ -45,6 +45,7 @@ module.exports = {
         whitelist: [
           "greeter.hello",
           "reports.create",
+          "reports.update",
           "reports.find",
           "reports.get",
           "reports.getReportsCurrentMonths",
@@ -81,6 +82,7 @@ module.exports = {
           "POST /reports": "reports.create",
           "GET /reports": "reports.find",
           "GET /reports/:id": "reports.get",
+          "PUT /reports/:id": "reports.update",
           "GET /reportsMonths": "reports.getReportsCurrentMonths",
           "GET /pointAddresses": "pointAddresses.find",
           "GET /pointAddresses/:id": "pointAddresses.get",
