@@ -166,6 +166,17 @@ module.exports = {
         });
         return Promise.resolve(reports)
       }
+    },
+    findManagers: {
+      async handler(ctx) {
+        const managers = await ctx.call("users.find", {
+          query: {
+            role: 'MANAGER'
+          },
+          populate: ["pointAddress"]
+        });
+        return Promise.resolve(managers)
+      }
     }
   },
 

@@ -60,7 +60,7 @@ module.exports = {
           "users.remove",
           "users.update",
           "users.register",
-          "users.findWithPopulate"
+          "users.findManagers"
         ],
 
         // Route-level Express middlewares. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Middlewares
@@ -89,6 +89,7 @@ module.exports = {
           "POST /pointAddresses": "pointAddresses.create",
           "PUT /pointAddresses/:id": "pointAddresses.update",
           "DELETE /pointAddresses/:id": "pointAddresses.remove",
+          "GET /managers": "users.findManagers",
           "GET /users": "users.find",
           "GET /users/:id": "users.get",
           "POST /users": "users.register",
