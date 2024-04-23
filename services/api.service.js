@@ -49,6 +49,7 @@ module.exports = {
           "reports.find",
           "reports.get",
           "reports.getReportsCurrentMonths",
+          "reports.getReportDatesForEachDay",
           "pointAddresses.get",
           "pointAddresses.find",
           "pointAddresses.create",
@@ -73,7 +74,7 @@ module.exports = {
         authentication: false,
 
         // Enable authorization. Implement the logic into `authorize` method. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Authorization
-        authorization: true,
+        authorization: false,
 
         // The auto-alias feature allows you to declare your route alias directly in your services.
         // The gateway will dynamically build the full routes from service schema.
@@ -84,6 +85,7 @@ module.exports = {
           "GET /reports/:id": "reports.get",
           "PUT /reports/:id": "reports.update",
           "GET /reportsMonths": "reports.getReportsCurrentMonths",
+          "GET /getReportDatesForEachDay/:managerId/:dateMonthYear": "reports.getReportDatesForEachDay",
           "GET /pointAddresses": "pointAddresses.find",
           "GET /pointAddresses/:id": "pointAddresses.get",
           "POST /pointAddresses": "pointAddresses.create",

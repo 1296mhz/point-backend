@@ -80,6 +80,24 @@ module.exports = {
         });
         return Promise.resolve(reports)
       }
+    },
+    getReportDatesForEachDay: {
+      async handler(ctx) {
+        console.log(ctx.params)
+        const dateArray = ctx.params.dateMonthYear.split("-");
+        const startOfMonth = new Date(dateArray[0], dateArray[1], 1);
+        const endOfMonth = new Date(dateArray[0], dateArray[1] + 1, 0);
+        const reports = await ctx.call("reports.find", {
+          query: {
+            user: ctx.params.managerId,
+            createdAt: {
+              $gte: startOfMonth,
+              $lte: endOfMonth
+            }
+          }
+        });
+        return Promise.resolve(reports)
+      }
     }
   },
 

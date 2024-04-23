@@ -18,9 +18,11 @@
   ],
   "author": "",
   "devDependencies": {
+    "eslint_d": "^13.1.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
-    "moleculer-repl": "^0.7.3"
+    "moleculer-repl": "^0.7.3",
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
